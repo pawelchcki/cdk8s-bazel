@@ -1,19 +1,3 @@
-load("@rules_python//python:defs.bzl", "py_binary")
-load("@cdk8s_py_deps//:requirements.bzl", "requirement")
+load("@bazel_cdk8s//:rules.bzl", "cdk8s_yaml")
 
-py_binary(
-  name = "simple",
-  srcs = ["simple.py"],
-  deps = [
-      requirement("constructs"),
-      "//cdk8s_py/api/k8s"
-  ]
-)
-
-genrule(
-    name = "mhh",
-    srcs = [],
-    outs = ["dup.yaml"],
-    cmd = "./$(location simple) > \"$@\"",
-    tools = ["simple"],
-)
+cdk8s_yaml(name="simple", main = "simple.py")

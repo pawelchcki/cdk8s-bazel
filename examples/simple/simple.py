@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-from constructs import Construct, MetadataEntry
+from constructs import Construct
 from cdk8s import App, Chart
 from cdk8s_py.api import k8s
-
 
 class MyChart(Chart):
     def __init__(self, scope: Construct, id: str):
@@ -27,5 +26,5 @@ class MyChart(Chart):
 
 
 app = App()
-MyChart(app, "fullnode-py")
+MyChart(app, "sample")
 app.synth()
