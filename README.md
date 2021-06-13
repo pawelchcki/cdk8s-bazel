@@ -10,8 +10,13 @@ See: examples folder
 
 ### WORKSPACE
 ```python
-## TODO: replace with http_repository once release is up
-git_repository(name = "bazel_cdk8s", remote="https://github.com/pawelchcki/cdk8s-bazel.git")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "bazel_cdk8s",
+    urls = ["https://github.com/pawelchcki/cdk8s-bazel/releases/download/0.1.0/cdk8s-bazel-0.1.0.tar.gz"],
+    sha256 = "5731046ee90da48cb484f7cff685286f3327d321365485f30540bb61b03aed91",
+)
 
 load("@bazel_cdk8s//deps:python.bzl", "cdk8s_rules_python")
 
