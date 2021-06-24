@@ -14,7 +14,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "bazel_cdk8s",
-    urls = ["https://github.com/pawelchcki/cdk8s-bazel/releases/download/0.1.0/cdk8s-bazel-0.1.0.tar.gz"],
+    urls = ["https://github.com/pawelchcki/cdk8s-bazel/releases/download/0.2.0/cdk8s-bazel-0.2.0.tar.gz"],
     sha256 = "5731046ee90da48cb484f7cff685286f3327d321365485f30540bb61b03aed91",
 )
 
