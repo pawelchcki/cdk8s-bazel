@@ -3,25 +3,19 @@ Macros for defining build of k8s yamls
 """
 load("@rules_python//python:defs.bzl", "py_binary")
 load("@cdk8s_py_deps//:requirements.bzl", "requirement")
+load("//rules:gen_k8s_file.bzl", "gen_k8s_file")
 
 def cdk8s_yaml(name, main = "", srcs = [], deps = []):
-    if main == "":
-        main = name + ".py"
-
     py_binary(
-        name = name,
+        name = name + ".gen.tool",
         srcs = [main] + srcs,
+        main = main,
         deps = [
             requirement("constructs"),
             requirement("cdk8s"),
+            requirement("cdk8s-plus-17"),
             "@bazel_cdk8s//cdk8s_py/api/k8s"
         ] + deps, 
     )
 
-    native.genrule(
-        name = name + ".yaml.gen",
-        srcs = [],
-        outs = [name + ".yaml"],
-        cmd = "./$(location " + name + "); cat dist/*.yaml > \"$@\"",
-        tools = [name],
-    )
+    gen_k8s_file(name = name, tool = name + ".gen.tool")
