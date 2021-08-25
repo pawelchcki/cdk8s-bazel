@@ -1,5 +1,5 @@
 def _gen_k8s_file(ctx):
-    odir = ctx.actions.declare_directory("tmp")
+    odir = ctx.actions.declare_directory(ctx.label.name + "_tmp")
     ctx.actions.run(
         inputs = [],
         outputs = [odir],
